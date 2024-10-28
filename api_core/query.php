@@ -10,5 +10,5 @@ while ($row = $resultado->fetch_assoc()) {
     $produtos[] = $row;
 }
 
-print_r($produtos);
+
 
