@@ -2,13 +2,23 @@
 
 include('conexao.php');
 
-$resultado = $conexao->query('SELECT * FROM produtos');
+class Query{
 
-$produtos = [];
+    public static function Send($sql){
 
-while ($row = $resultado->fetch_assoc()) {
-    $produtos[] = $row;
-}
+        $resultado = $conexao->query($sql);
+
+        $arrayResultados = [];
+    
+        while ($row = $resultado->fetch_assoc()) {
+            $arrayResultados[] = $row;
+        }
+
+        return $arrayResultados;
+    }
+
+}    
+
 
 
 
