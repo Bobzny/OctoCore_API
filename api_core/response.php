@@ -3,7 +3,7 @@
 require_once __DIR__ ."./config.php";
 
 class Response{
-    public static function geison($status = 200, $message = 'success', $data = null){
+    public static function geison($data = null, $status = 200, $message = 'success' ){
         header('Access-Control-Allow-Origin: *'); // Permite acesso de qualquer origem
         header('Access-Control-Allow-Methods: GET, POST, OPTIONS'); // Define métodos permitidos
         header('Access-Control-Allow-Headers: Content-Type, Authorization'); // Define cabeçalhos permitidos
