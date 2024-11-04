@@ -22,6 +22,9 @@ class Query{
         if (!$resultado) { 
             die("Erro na consulta SQL: " . self::$conn->error); 
         }
+        if ($resultado){
+            echo("Operação bem sucedida");
+        }
     
         while ($row = $resultado->fetch_assoc()) {
             $arrayResultados[] = $row;
