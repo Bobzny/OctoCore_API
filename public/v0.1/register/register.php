@@ -8,19 +8,24 @@ $data = json_decode($requisicao, true);
 
 
 if(!empty($data)){
-    #$resultado = Query::Send("SELECT * FROM USUARIOS WHERE USUARIO = 'bobzito' AND SENHA = '123'"); 
+    try{
 
-    $user = $data['user'];
-    $pw = $data['password'];
-    $resultado = Query::Send("INSERT INTO USUARIOS VALUES (null, '$user', '$pw', default, 0)"); 
-    if ($resultado){
-        
-        echo Response::geison($resultado);
+        $user = $data['user'];
+        $pw = $data['password'];
+
+
+    }finally{
+        die("Requisição inválida!");
     }
-    #echo ("INSERT INTO USUARIOS VALUES (null, '$user', '$pw', default");
+
+
+    $resultado = Query::Send("INSERT INTO USUARIOS VALUES (null, '$user', '$pw', default, 0)"); 
+    echo Response::geison($resultado);
+    
+   
 }                                                                                       
 else{
-    echo "Sem JSON na requisição >:C";
+    echo "Sem JSON na requisição :C";
 }
 
 
