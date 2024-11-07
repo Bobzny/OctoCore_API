@@ -13,12 +13,12 @@ $resultados = Query::Send("
 
 echo Response::geison($resultados);
 
-/*{ JSON de resposta para testes
+/*{JSON para testes
     "status": 200,
     "message": "success",
     "api_version": "0.2",
-    "time_response": 1730897889,
-    "datetime_response": "06-11-2024 13:11:09",
+    "time_response": 1730990040,
+    "datetime_response": "07-11-2024 15:11:00",
     "data": [
         {
             "idProduto": "1",
@@ -26,7 +26,7 @@ echo Response::geison($resultados);
             "valorUnitario": "2400.99",
             "quantidade": "50",
             "descricao": "Potente",
-            "linkImagem": null,
+            "linkImagem": "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/0/100-100000147box1.jpg",
             "idCategoria": "1"
         },
         {
@@ -35,7 +35,124 @@ echo Response::geison($resultados);
             "valorUnitario": "2500.99",
             "quantidade": "10",
             "descricao": "Potente 2",
-            "linkImagem": null,
+            "linkImagem": "https://static.rbstore.net/1410324639/7834a459-dfe8-5b72-ac03-2a6d98b0f6db.webp",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "3",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "4",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "5",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "6",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "7",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "8",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "9",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "10",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "11",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "12",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "13",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "14",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
+            "idCategoria": "1"
+        },
+        {
+            "idProduto": "15",
+            "nome": "Teste",
+            "valorUnitario": "1200.00",
+            "quantidade": "20",
+            "descricao": "Cara bom",
+            "linkImagem": "https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109",
             "idCategoria": "1"
         }
     ]
