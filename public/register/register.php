@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ ."/../../../api_core/query.php";
-require_once __DIR__ ."/../../../api_core/response.php";
+require_once __DIR__ ."/../../api_core/query.php";
+require_once __DIR__ ."/../../api_core/response.php";
 
 $requisicao = file_get_contents('php://input'); #Atribui na variável qualquer json que tenha sido enviado em uma requisição
 
