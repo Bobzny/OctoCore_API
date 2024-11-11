@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ ."/../../api_core/query.php";
-require_once __DIR__ ."/../../api_core/response.php";
+require_once __DIR__ ."/../../core/query.php";
+require_once __DIR__ ."/../../core/response.php";
 
 $categoria = $_GET['categoria'];
 #Comando sql que da join das duas tabelas com base em id de categoria e depois filtra pelo nome especificado na url
