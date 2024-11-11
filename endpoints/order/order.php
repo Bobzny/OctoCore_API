@@ -11,15 +11,11 @@ $userID = 1;
 $requisicao = file_get_contents('php://input');
 
 
-if ($_POST){
-    $resposta = Query::Send("INSERT INTO PEDIDOS VALUES (null, 'Criado', $valorTotal, '$metodoPagamento', 10, NOW(),$userID)");
-    echo Response::geison($resposta);
-}
-else{
+#TEM Q MEXER BASTANTE AINDA
     $idPedido = $_GET['id'];
     $resposta = Query::Send("SELECT * FROM PEDIDOS WHERE idPedido = $idPedido");
     echo Response::geison($resposta);
-}
+
 
 
 

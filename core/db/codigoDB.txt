@@ -11,7 +11,7 @@ create table usuarios (
 create table cartoes (
 	idCartao	int	primary key	auto_increment	unique,
     numeroCC	varchar(19)	not null,
-    cvv		int	not null,
+    cvv			int	not null,
     validade	varchar(5),
 	isActive	boolean,
     idUsuario	int,
@@ -20,7 +20,7 @@ create table cartoes (
 create table enderecos(
 	idEndereco	int	primary key	auto_increment	unique,
 	nome		varchar(20)	not null,
-    cep		varchar(9) not null,
+    cep			varchar(9) not null,
 	codigoRastreio	varchar(13),
     complemento 	varchar(30),
     isActive	boolean,
@@ -57,4 +57,28 @@ create table conteudo (
     quantidade	int	default 1,
     foreign key (idPedido) references pedidos(idPedido),
     foreign key (idProduto) references produtos(idProduto)
-)
+);
+INSERT INTO CATEGORIAS (idCategoria, nome) VALUES
+(null, 'processador'),
+(null, 'placaMae'),
+(null, 'memoriaRam'),
+(null, 'placaDeVideo'),
+(null, 'ssd'),
+(null, 'hd'),
+(null, 'cooler'),
+(null, 'fonte'),
+(null, 'gabinete'),
+(null, 'fans'),
+(null, 'so'),
+(null, 'software');
+INSERT INTO produtos (idProduto, nome, valorUnitario, quantidade, descricao, linkImagem, idCategoria) VALUES
+(null, 'Processador I9', 3600.00, 10, 'Processador potente', 'https://img.terabyteshop.com.br/produto/g/processador-intel-core-i9-14900k-36-ghz-60ghz-turbo-14-geracao-24-cores-32-threads-lga-1700-bx8071514900k_179835.jpg', 1),
+(null, 'Placa Mãe ASUS', 499.90, 5, 'Placa mãe da boa', 'https://images7.kabum.com.br/produtos/fotos/376217/placa-mae-asus-rog-strix-x670e-e-gaming-wifi-amd-x670-am5-ddr5-90mb1br0-m0eay0_1666295392_g.jpg', 2),
+(null, 'Memória RAM 8GB', 359.90, 20, 'Memória RAM veloz', 'https://images.kabum.com.br/produtos/fotos/172365/memoria-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1626270523_g.jpg', 3),
+(null, 'NVIDIA RTX 4090', 11299.99, 7, 'Placa de vídeo para jogadores', 'https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/g/v/gv-n4090gaming-oc-24gd.jpg', 4),
+(null, 'SSD nvme', 699.90, 15, 'SSD ultra fast', 'https://www.kingstonstore.com.br/cdn/shop/products/KC30001T1_800x.jpg?v=1635368060', 5),
+(null, 'HD 2TB', 549.90, 12, 'HD de 2TB para grandes armazenamentos', 'https://images.kabum.com.br/produtos/fotos/100916/hd-seagate-barracuda-2tb-3-5-sata-st2000dm008_hd-seagate-barracuda-2tb-3-5-sata-st2000dm008_1552932729_g.jpg', 6),
+(null, 'Water Cooler', 299.90, 30, 'Cooler gelado', 'https://images.kabum.com.br/produtos/fotos/130043/water-cooler-rise-mode-gamer-black-rgb-240mm-preto-rm-wcb-02-rgb_1663776681_original.jpg', 7),
+(null, 'Fonte 600W', 199.90, 8, 'Fonte de alimentação raivosa', 'https://a-static.mlcdn.com.br/800x560/fonte-evga-600w-80-plus-white-100-w1-0600-k/kabum/79112/1742ba21812454518e4194f43bf313c5.jpeg', 8),
+(null, 'Gabinete Gamer', 299.90, 5, 'Gabinete com rgb', 'https://m.media-amazon.com/images/I/71Fm1iVNFoL._AC_UF1000,1000_QL80_.jpg', 9),
+(null, 'Ventoinha RGB', 49.90, 50, 'Ventoinha que aumenta o desempenho', 'https://images8.kabum.com.br/produtos/fotos/108138/kit-com-3-cooler-fan-corsair-qlseries-rgb-120mm-co-9050098-ww_1575574269_g.jpg', 10);

@@ -13,40 +13,68 @@ class Query{
         self::$conn = $conexao;                 #Usando self:: ao invés de this-> porque é uma função estática
     }
     
-    public static function Send($sql){
+    
 
-        $resultado = self::$conn->query($sql);
+    public static function Send($sql, $params = []){
 
+        $statement = self::$conn->prepare($sql);
+        if($statement === false){               #Tratamente de erros na preparação
+            die("Erro ao preparar o statement:".self::$conn->error); 
+        }
+        $tiposStr = '' ;  #Loop para montar a string que vai ser passada como parâmetro na hora do bind
+        if(!empty($params)){
+            foreach($params as $p){     
+                $tipo = gettype($p);
+                switch ($tipo){
+                    case 'string':
+                        $tiposStr .= "s";
+                        break;
+                    case 'integer':
+                        $tiposStr .= "i";
+                        break;
+                    case 'double':
+                        $tiposStr .= "d";
+                        break;
+                }
+            }
+            $statement->bind_param($tiposStr, ...$params); #O ... pega os itens dentro do array e passa individualmente como parâmtros, muito mágico :)
+        };
+        
+        $execucao = $statement->execute();
+
+        if($execucao === false){
+            die("Erro na execução do statement: ". self::$conn->error);
+        }
+
+        if($statement->affected_rows >= 0){ #Checa se alguma linha foi afetada, indicando que foi uma operação que não gera retorno de array
+            return "Operação bem-sucedida com ".$statement->affected_rows." linhas afetadas";
+        }
+
+        $resultado = $statement->get_result();
         $arrayResultados = [];
-
-        if ($resultado === true) {  #Verifica se o mysql retornou apenas verdadeiro, significando que não era uma operação de consulta
-            return "Operação bem sucedida";
-
-        }else if ($resultado === false){ #Verifica se houve um erro na exercução do comando e retorna o erro
-            die("Erro na consulta SQL: " . self::$conn->error); 
-
-        }else{ #Caso não caia nas duas anteriores significa que foi uma consulta e foi bem sucedida
+        
                 
-                while ($row = $resultado->fetch_assoc()) { 
-                    $arrayResultados[] = $row; #Organiza o resultado em um array associativo
-                }
+        while ($linha = $resultado->fetch_assoc()) {  #Loop que executa até o valor retornado pela função ser null,
+                                                            #indicando que todos os resultados foram adicionados ao array
+            $arrayResultados[] = $linha; #Organiza o resultado em um array associativo
+        }
                 
-                if (!empty($arrayResultados)){ #Verifica se o array resultante está vazio e o retorna caso não esteja 
-                    return $arrayResultados;
-                }
-                else{
+        if (!empty($arrayResultados)){ #Verifica se o array resultante está vazio e o retorna caso não esteja 
+            return $arrayResultados;
+        }
+        else{
                     
-                    return "Nenhum resultado encontrado :c";
+            return "Nenhum resultado encontrado :c";
                     
                    
-                }
         }
+        
 
        
     }
 
 }    
 
-Query::setConn($conexao)
+Query::setConn($conexao);
 
 ?>

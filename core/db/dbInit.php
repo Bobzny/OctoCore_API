@@ -23,4 +23,6 @@ else{
     echo "Erro ao criar o banco 💀";
 }
 
+$connection->close();
+
 ?>
