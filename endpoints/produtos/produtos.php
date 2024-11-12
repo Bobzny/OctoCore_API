@@ -2,6 +2,13 @@
 require_once __DIR__ ."/../../core/query.php";
 require_once __DIR__ ."/../../core/response.php";
 
+$requisicao = file_get_contents('php://input');
+$data = json_decode($requisicao, true);
+
+print_r($data);
+
+
+
 if ($categoria = array($_GET['categoria'])){
 
     #Comando sql que da join das duas tabelas com base em id de categoria e depois filtra pelo nome especificado na url
