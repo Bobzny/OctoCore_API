@@ -65,15 +65,18 @@ class Query{
         else{
                     
             return "Nenhum resultado encontrado :c";
-                    
-                   
+                              
         }
-        
+    }    
+    public static function Search($tabela, $busca){
+
+            print_r($busca);
+            echo Response::geison($tabela);
+
+        }
 
        
     }
-
-}    
 
 Query::setConn($conexao);
 

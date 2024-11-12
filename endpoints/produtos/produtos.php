@@ -9,8 +9,8 @@ print_r($data);
 
 
 
-if ($categoria = array($_GET['categoria'])){
-
+if (isset($_GET['categoria'])){
+    $categoria = array($_GET['categoria']);
     #Comando sql que da join das duas tabelas com base em id de categoria e depois filtra pelo nome especificado na url
     $resultados = Query::Send(" 
         SELECT p.* 
@@ -19,8 +19,15 @@ if ($categoria = array($_GET['categoria'])){
         WHERE c.nome = ?
     ",$categoria);
 
+    
+}if(isset($_GET['busca'])){
+    $busca = array($_GET['busca']);
+    $resultados = Query::Search("produtos", $busca);
 }
+else{ #Else para pesquisas sem parâmetro
+    $resultados = Query::Send("SELECT * FROM Produtos");   
 
+}
 
 echo Response::geison($resultados);
 
