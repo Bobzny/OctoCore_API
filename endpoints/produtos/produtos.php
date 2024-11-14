@@ -6,13 +6,12 @@ require_once __DIR__ ."/../../core/response.php";
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $requisicao = file_get_contents('php://input');
-    $data = json_decode($requisicao, true);
-    $param = [$_POST['nome'], $_POST['valorUnitario'], $_POST['descricao'],$_POST['linkImagem'], $_POST['idCategoria']];
-    Query::Send("INSERT INTO PRODUTOS (idProduto, nome, valorUnitario, quantidade, descricao, linkImagem, idCategoria) VALUES (null, ?, ?, 10, ?, ?, ?)", $param);
+    $requisicao = json_decode(file_get_contents('php://input'), true);
+    $params = [$requisicao['nome'], $requisicao['valorUnitario'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idCategoria']];
+    $resultados = Query::Send("INSERT INTO PRODUTOS (idProduto, nome, valorUnitario, quantidade, descricao, linkImagem, idCategoria) VALUES (null, ?, ?, 10, ?, ?, ?)", $params);
 
 }
-if($_SERVER['REQUEST_METHOD'] === 'GET'){
+else if($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['categoria'])){
         $categoria = array($_GET['categoria']);
         #Comando sql que da join das duas tabelas com base em id de categoria e depois filtra pelo nome especificado na url
@@ -32,7 +31,20 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
     }
 }
+else if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+    
+    $requisicao = json_decode(file_get_contents('php://input'), true);
+    $params = [$requisicao['idProduto']];
+    $resultados = Query::Send('DELETE FROM Produtos WHERE idProduto = ?', $params);
 
+}
+else if ($_SERVER['REQUEST_METHOD'] === 'PUT'){
+
+    $requisicao = json_decode(file_get_contents('php://input'), true);
+    $params = [$requisicao['nome'], $requisicao['valorUnitario'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idProduto']];
+    $resultados = Query::Send('UPDATE Produtos SET nome = ?, valorUnitario = ?, descricao = ?, linkImagem = ? WHERE idProduto = ?', $params);
+
+}
 echo Response::geison($resultados);
 
 
