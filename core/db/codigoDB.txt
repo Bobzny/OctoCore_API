@@ -2,11 +2,11 @@ create database tivendepets;
 use tivendepets; 
 create table usuarios (
 	idUsuario	int		primary key		auto_increment	unique,
+    nivelAcesso int not null,
    	usuario		varchar(15)	not null	unique,
    	senha		varchar(20)	not null,
    	linkPFP		varchar(255)	default 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*g09N-jl7JtVjVZGcd-vL2g.jpeg',
    	pedidosTotais	int
-
 );
 
 create table categorias (
