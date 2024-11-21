@@ -7,8 +7,8 @@ require_once __DIR__ ."/../../core/response.php";
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $requisicao = json_decode(file_get_contents('php://input'), true);
-    $params = [$requisicao['nome'], $requisicao['valorUnitario'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idCategoria']];
-    $resultados = Query::Send("INSERT INTO PRODUTOS (idProduto, nome, valorUnitario, quantidade, descricao, linkImagem, idCategoria) VALUES (null, ?, ?, 10, ?, ?, ?)", $params);
+    $params = [$requisicao['nome'], $requisicao['valorUnitario'],$requisicao['dataNasc'], $requisicao['corPrincipal'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idCategoria']];
+    $resultados = Query::Send("INSERT INTO PRODUTOS (nome, valorUnitario, dataNasc, corPrincipal,  descricao, linkImagem, idCategoria) VALUES (?, ?, ?, ?, ?,?,?)", $params);
 
 }
 else if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -41,8 +41,10 @@ else if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
 else if ($_SERVER['REQUEST_METHOD'] === 'PUT'){
 
     $requisicao = json_decode(file_get_contents('php://input'), true);
-    $params = [$requisicao['nome'], $requisicao['valorUnitario'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idProduto']];
-    $resultados = Query::Send('UPDATE Produtos SET nome = ?, valorUnitario = ?, descricao = ?, linkImagem = ? WHERE idProduto = ?', $params);
+    $params = [$requisicao['nome'], $requisicao['valorUnitario'],$requisicao['dataNasc'],$requisicao['corPrincipal'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idProduto']];
+    $resultados = Query::Send('UPDATE Produtos SET nome = ?, valorUnitario = ?, dataNasc = ?, corPrincipal = ?, descricao = ?, linkImagem = ? WHERE idProduto = ?', $params);
+    echo Response::geison($resultados[0]);
+    die;
 
 }
 echo Response::geison($resultados);

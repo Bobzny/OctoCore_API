@@ -1,49 +1,53 @@
 create database tivendepets;
 use tivendepets; 
 create table usuarios (
-	idUsuario	int		primary key		auto_increment	unique,
-    nivelAcesso int not null,
+	idUsuario	int		primary key		auto_increment,
+    nivelAcesso int not null	default 0,
    	usuario		varchar(15)	not null	unique,
+    email       varchar(30) not null    unique,
    	senha		varchar(20)	not null,
-   	linkPFP		varchar(255)	default 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*g09N-jl7JtVjVZGcd-vL2g.jpeg',
-   	pedidosTotais	int
+   	linkImagem		varchar(255)	default 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*g09N-jl7JtVjVZGcd-vL2g.jpeg'
 );
-
 create table categorias (
-	idCategoria	int	primary key	auto_increment	unique,
+	idCategoria	int	primary key	auto_increment,
     nome 		varchar(20) not null
 );
 create table produtos (
-	idProduto	int	primary key	auto_increment	unique,
+	idProduto	int	primary key	auto_increment,
     nome		varchar(40)	not null,
     valorUnitario	decimal(10,2) not null,
-    quantidade	int	not null	default 0,
-    descricao 	varchar(80) default 'Essa é uma das peças ja feitas',
+    quantidade	int	not null	default 1,
+    dataNasc    date    not null,
+    corPrincipal    char(7) not null,
+    descricao 	varchar(80) default 'Essa é um dos animais ja feitos',
    	linkImagem 	varchar(255)	default 'https://static.wikia.nocookie.net/paper-shin-aka-keroro-gunsou/images/c/c1/John_Xina.png/revision/latest?cb=20220116222109',
     idCategoria 	int,
     foreign key (idCategoria) references categorias(idCategoria)
 );
-INSERT INTO CATEGORIAS (idCategoria, nome) VALUES
-(null, 'processador'),
-(null, 'placaMae'),
-(null, 'memoriaRam'),
-(null, 'placaDeVideo'),
-(null, 'ssd'),
-(null, 'hd'),
-(null, 'cooler'),
-(null, 'fonte'),
-(null, 'gabinete'),
-(null, 'fans'),
-(null, 'so'),
-(null, 'software');
-INSERT INTO produtos (idProduto, nome, valorUnitario, quantidade, descricao, linkImagem, idCategoria) VALUES
-(null, 'Processador I9', 3600.00, 10, 'Processador potente', 'https://img.terabyteshop.com.br/produto/g/processador-intel-core-i9-14900k-36-ghz-60ghz-turbo-14-geracao-24-cores-32-threads-lga-1700-bx8071514900k_179835.jpg', 1),
-(null, 'Placa Mãe ASUS', 499.90, 5, 'Placa mãe da boa', 'https://images7.kabum.com.br/produtos/fotos/376217/placa-mae-asus-rog-strix-x670e-e-gaming-wifi-amd-x670-am5-ddr5-90mb1br0-m0eay0_1666295392_g.jpg', 2),
-(null, 'Memória RAM 8GB', 359.90, 20, 'Memória RAM veloz', 'https://images.kabum.com.br/produtos/fotos/172365/memoria-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1626270523_g.jpg', 3),
-(null, 'NVIDIA RTX 4090', 11299.99, 7, 'Placa de vídeo para jogadores', 'https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/g/v/gv-n4090gaming-oc-24gd.jpg', 4),
-(null, 'SSD nvme', 699.90, 15, 'SSD ultra fast', 'https://www.kingstonstore.com.br/cdn/shop/products/KC30001T1_800x.jpg?v=1635368060', 5),
-(null, 'HD 2TB', 549.90, 12, 'HD de 2TB para grandes armazenamentos', 'https://images.kabum.com.br/produtos/fotos/100916/hd-seagate-barracuda-2tb-3-5-sata-st2000dm008_hd-seagate-barracuda-2tb-3-5-sata-st2000dm008_1552932729_g.jpg', 6),
-(null, 'Water Cooler', 299.90, 30, 'Cooler gelado', 'https://images.kabum.com.br/produtos/fotos/130043/water-cooler-rise-mode-gamer-black-rgb-240mm-preto-rm-wcb-02-rgb_1663776681_original.jpg', 7),
-(null, 'Fonte 600W', 199.90, 8, 'Fonte de alimentação raivosa', 'https://a-static.mlcdn.com.br/800x560/fonte-evga-600w-80-plus-white-100-w1-0600-k/kabum/79112/1742ba21812454518e4194f43bf313c5.jpeg', 8),
-(null, 'Gabinete Gamer', 299.90, 5, 'Gabinete com rgb', 'https://m.media-amazon.com/images/I/71Fm1iVNFoL._AC_UF1000,1000_QL80_.jpg', 9),
-(null, 'Ventoinha RGB', 49.90, 50, 'Ventoinha que aumenta o desempenho', 'https://images8.kabum.com.br/produtos/fotos/108138/kit-com-3-cooler-fan-corsair-qlseries-rgb-120mm-co-9050098-ww_1575574269_g.jpg', 10);
+INSERT INTO categorias (idCategoria, nome) VALUES
+(null, 'gato'),
+(null, 'cachorro'),
+(null, 'hamster'),
+(null, 'coelho'),
+(null, 'papagaio'),
+(null, 'peixe'),
+(null, 'tartaruga'),
+(null, 'cavalo'),
+(null, 'camaleao'),
+(null, 'porquinhoDaIndia');
+
+INSERT INTO produtos (idProduto, nome, valorUnitario, quantidade, dataNasc, corPrincipal, descricao, linkImagem, idCategoria) VALUES
+(null, 'Inácio', 1500.00, 5, '2022-03-15', '#FFFFFF', 'Gato de pelo longo e temperamento docil.', 'https://caes-e-cia.com.br/wp-content/uploads/2022/01/Persa_4_Caes_e_cia_SEO4.jpg', 1),
+(null, 'Doge', 2000.00, 3, '2021-11-01', '#FFD700', 'Cachorro amigavel e brincalhao.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeP835chGu_jniJSyXHpvjUR1R2y3tFH461g&s', 2),
+(null, 'Chico', 50.00, 20, '2023-01-20', '#D2691E', 'Pequeno roedor ideal para criancas.', 'https://jpimg.com.br/uploads/2024/11/5-curiosidades-fascinantes-sobre-os-hamsters.jpg', 3),
+(null, 'Chungus', 300.00, 10, '2022-06-10', '#F5F5DC', 'Coelho pequeno e fofinho.', 'https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/3897187267_f36b5e4e7a_c.webp?w=1600&h=1200', 4),
+(null, 'Pirataria', 1000.00, 4, '2020-08-15', '#008000', 'Papagaio que pode aprender a falar.', 'https://i.pinimg.com/280x280_RS/01/41/c6/0141c6bd01850dbdcd2ed907a376da0f.jpg', 5),
+(null, 'Alpha', 30.00, 50, '2023-02-05', '#0000FF', 'Peixe colorido e facil de cuidar.', 'https://d1kq2dqeox7x40.cloudfront.net/images/news_uploads/legacy/0/157287.jpg?h=225&w=375', 6),
+(null, 'Squirtle', 200.00, 8, '2021-07-12', '#228B22', 'Tartaruga para aquarios.', 'https://static.significados.com.br/foto/tartaruga-marinha-cke.jpg', 7),
+(null, 'Carpeado', 15000.00, 2, '2019-05-25', '#A0522D', 'Cavalo de raca e facil manejo.', 'https://cptstatic.s3.amazonaws.com/imagens/enviadas/materias/materia16043/caracteristicas-cavalos-saudaveis-artigos-cursos-cpt.jpg', 8),
+(null, 'Kecleon', 700.00, 6, '2022-12-30', '#32CD32', 'Camaleao com cores fascinantes.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcELOuwFAWHT0UfDZDFnfxoXejhbJXuktdrw&s', 9),
+(null, 'Big Smoke', 80.00, 15, '2023-03-10', '#FFA07A', 'Roedor amigavel e sociavel.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrFdkgInOcAbkuNj2d0roPjtQVnSPUzIfYBw&s', 10);
+
+INSERT INTO usuarios (nivelAcesso, usuario, email, senha, linkImagem) VALUES 
+(default,'Visitante', 'visitante@tivendepets.com', '123', default),
+(1,'Admin', 'admin@tivendepets.com', '123', 'https://preview.redd.it/meu-gato-%C3%A9-praticamente-o-gato-do-meme-v0-n9dleoj8dgfc1.jpg?width=640&crop=smart&auto=webp&s=52de2578fe227e639db822d551bba33c6d28a2f1')

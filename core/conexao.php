@@ -3,7 +3,7 @@
 $host = 'localhost';
 $user = 'root';
 $senha = 'admin';
-$database = 'octocore';
+$database = 'tivendepets';
 
 $conexao = new mysqli($host, $user, $senha, $database);
 

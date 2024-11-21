@@ -43,11 +43,12 @@ class Query{
         $execucao = $statement->execute();
 
         if($execucao === false){
+            return False;
             die("Erro na execução do statement: ". self::$conn->error);
         }
 
         if($statement->affected_rows >= 0){ #Checa se alguma linha foi afetada, indicando que foi uma operação que não gera retorno de array
-            return "Operação bem-sucedida com ".$statement->affected_rows." linhas afetadas";
+            return ["Operação bem-sucedida com ".$statement->affected_rows." linhas afetadas", True];
         }
 
         $resultado = $statement->get_result();
