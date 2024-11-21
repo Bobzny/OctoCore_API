@@ -9,7 +9,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $requisicao = json_decode(file_get_contents('php://input'), true);
     $params = [$requisicao['nome'], $requisicao['valorUnitario'],$requisicao['dataNasc'], $requisicao['corPrincipal'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idCategoria']];
     $resultados = Query::Send("INSERT INTO PRODUTOS (nome, valorUnitario, dataNasc, corPrincipal,  descricao, linkImagem, idCategoria) VALUES (?, ?, ?, ?, ?,?,?)", $params);
+    if (is_array($resultados)){
 
+        echo Response::geison($resultados[1]);
+        die;
+    }
+    else{
+        echo Response::geison($resultados);
+    }
 }
 else if($_SERVER['REQUEST_METHOD'] === 'GET'){
     if (isset($_GET['categoria'])){
