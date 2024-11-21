@@ -43,7 +43,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'PUT'){
     $requisicao = json_decode(file_get_contents('php://input'), true);
     $params = [$requisicao['nome'], $requisicao['valorUnitario'],$requisicao['dataNasc'],$requisicao['corPrincipal'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idProduto']];
     $resultados = Query::Send('UPDATE Produtos SET nome = ?, valorUnitario = ?, dataNasc = ?, corPrincipal = ?, descricao = ?, linkImagem = ? WHERE idProduto = ?', $params);
-    echo Response::geison($resultados[0]);
+    echo Response::geison($resultados[1]);
     die;
 
 }
