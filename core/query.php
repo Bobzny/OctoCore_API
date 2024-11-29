@@ -19,7 +19,7 @@ class Query{
 
         $statement = self::$conn->prepare($sql);
         if($statement === false){               #Tratamente de erros na preparação
-            die("Erro ao preparar o statement:".self::$conn->error); 
+            return[400,"Erro ao preparar o statement:".self::$conn->error]; 
         }
         $tiposStr = '' ;  #Loop para montar a string que vai ser passada como parâmetro na hora do bind
         if(!empty($params)){
@@ -37,34 +37,34 @@ class Query{
                         break;
                 }
             }
-            $statement->bind_param($tiposStr, ...$params); #O ... pega os itens dentro do array e passa individualmente como parâmtros, muito mágico :)
+            $statement->bind_param($tiposStr, ...$params); #O ... pega os itens dentro do array e passa individualmente como parâmetros, muito mágico :)
         };
         
         $execucao = $statement->execute();
 
         if($execucao === false){
-            die("Erro na execução do statement: ". self::$conn->error);
+            return[400,"Erro na execução do statement: ". self::$conn->error];
         }
 
         if($statement->affected_rows >= 0){ #Checa se alguma linha foi afetada, indicando que foi uma operação que não gera retorno de array
-            return "Operação bem-sucedida com ".$statement->affected_rows." linhas afetadas";
+            return [200, "Operação bem-sucedida com ".$statement->affected_rows." linhas afetadas"];
         }
 
         $resultado = $statement->get_result();
         $arrayResultados = [];
         
                 
-        while ($linha = $resultado->fetch_assoc()) {  #Loop que executa até o valor retornado pela função ser null,
-                                                            #indicando que todos os resultados foram adicionados ao array
-            $arrayResultados[] = $linha; #Organiza o resultado em um array associativo
+        while ($linha = $resultado->fetch_assoc()) {    #Loop que executa até o valor retornado pela função ser null,
+                                                        #indicando que todos os resultados foram adicionados ao array
+            $arrayResultados[] = $linha;                #Organiza o resultado em um array associativo
         }
                 
-        if (!empty($arrayResultados)){ #Verifica se o array resultante está vazio e o retorna caso não esteja 
-            return $arrayResultados;
+        if (!empty($arrayResultados)){      #Verifica se o array resultante está vazio e o retorna caso não esteja 
+            return [200, $arrayResultados]; #Retorna status e dados
         }
         else{
                     
-            return "Nenhum resultado encontrado :c";
+            return [404,"Nenhum resultado encontrado :c"];
                               
         }
     }    

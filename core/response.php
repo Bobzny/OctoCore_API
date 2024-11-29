@@ -3,19 +3,18 @@
 
 
 class Response{
-    public static function geison($data = null, $status = 200, $message = 'success' ){
+    public static function Enviar($status, $data = null){
        
-        
+        #Resposta para preflight
         if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-            http_response_code(200);
+            http_response_code($status);
             exit();
         }
         
         else{
             header('Content-Type: application/json');
+            http_response_code($status);
              return json_encode([
-            'status' => $status,
-            'message' => $message,
             'time_response' => time(),
             'datetime_response' => date('d-m-Y H:m:s'),
             'data' => $data

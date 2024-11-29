@@ -4,7 +4,7 @@ create table usuarios (
 	idUsuario	int		primary key		auto_increment,
    	usuario		varchar(15)	not null	unique,
     email       varchar(255)    not null    unique,
-   	senha		varchar(30)	not null,
+   	senha		varchar(255)	not null,
    	linkPFP		varchar(255)	default 'https://miro.medium.com/v2/resize:fit:720/format:webp/1*g09N-jl7JtVjVZGcd-vL2g.jpeg',
    	pedidosTotais	int
 
