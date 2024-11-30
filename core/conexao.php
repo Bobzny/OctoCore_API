@@ -2,7 +2,7 @@
 
 $host = 'localhost';
 $user = 'root';
-$senha = 'admin';
+$senha = '12345';
 $database = 'octocore';
 
 $conexao = new mysqli($host, $user, $senha, $database);
