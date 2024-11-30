@@ -110,8 +110,8 @@ INSERT INTO produtos (nome, valorUnitario, quantidade, descricao, linkImagem, id
 ('Water Cooler', 299.90, 30, 'Cooler gelado', 'https://images.kabum.com.br/produtos/fotos/130043/water-cooler-rise-mode-gamer-black-rgb-240mm-preto-rm-wcb-02-rgb_1663776681_original.jpg', 7),
 ('Fonte 600W', 199.90, 8, 'Fonte de alimentação raivosa', 'https://a-static.mlcdn.com.br/800x560/fonte-evga-600w-80-plus-white-100-w1-0600-k/kabum/79112/1742ba21812454518e4194f43bf313c5.jpeg', 8),
 ('Gabinete Gamer', 299.90, 5, 'Gabinete com rgb', 'https://m.media-amazon.com/images/I/71Fm1iVNFoL._AC_UF1000,1000_QL80_.jpg', 9),
-('Ventoinha RGB', 49.90, 50, 'Ventoinha que aumenta o desempenho', 'https://images8.kabum.com.br/produtos/fotos/108138/kit-com-3-cooler-fan-corsair-qlseries-rgb-120mm-co-9050098-ww_1575574269_g.jpg', 10);
-('Windows 10 Pro', 149.90, 50, 'Windows potente e profissional', default, 11);
+('Ventoinha RGB', 49.90, 50, 'Ventoinha que aumenta o desempenho', 'https://images8.kabum.com.br/produtos/fotos/108138/kit-com-3-cooler-fan-corsair-qlseries-rgb-120mm-co-9050098-ww_1575574269_g.jpg', 10),
+('Windows 10 Pro', 149.90, 50, 'Windows potente e profissional', default, 11),
 ('Photoshop', 249.90, 50, 'Edita foto', default, 12);
 INSERT INTO CUPONS VALUES ("INCRIVEL", 100, default);
 INSERT INTO PAGAMENTO (numeroCC, cvv, validade, limiteDisponivel) VALUES ("5272-9318-5710-9207", "502", "11/25", 2400.00),
