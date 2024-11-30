@@ -99,15 +99,7 @@ class Query{
                               
         }
     }    
-    public static function Search($tabela, $busca){
-
-            print_r($busca);
-            echo Response::geison($tabela);
-
-        }
-
-       
-    }
+}
 
 Query::setConn($conexao);
 
