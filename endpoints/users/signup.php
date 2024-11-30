@@ -8,12 +8,11 @@ if(!empty($requisicao)){
 
     if (isset($requisicao['user']) && isset($requisicao['email']) && $requisicao['password']){ #verifica se o JSON possui os campos necessários
         $hash = password_hash($requisicao['password'], PASSWORD_BCRYPT);
-        print_r($hash);
         $params = [$requisicao['user'], $requisicao['email'], $hash];
         #Isso tem que ser mudado pra um prepared statement no futuro pra não ter injeção sql, por enquanto serve
-        $resultados = Query::Send("  INSERT INTO usuarios (usuario, email, senha) VALUES 
+        $resultados = Query::Send("INSERT INTO usuarios (usuario, email, senha) VALUES 
                                     (?, ?, ?)", $params);  
-        echo Response::Enviar(...$resultados); 
+        echo Response::Enviar($resultados[0],$resultados[1]); 
 
     }
     else{

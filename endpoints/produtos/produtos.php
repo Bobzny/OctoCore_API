@@ -25,41 +25,13 @@ function Get(){
     }
     return $resultados;
 }
-function Post(){
-    $requisicao = json_decode(file_get_contents('php://input'), true);
-    $params = [$requisicao['nome'], $requisicao['valorUnitario'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idCategoria']];
-    $resultados = Query::Send("INSERT INTO PRODUTOS (idProduto, nome, valorUnitario, quantidade, descricao, linkImagem, idCategoria) VALUES (null, ?, ?, 10, ?, ?, ?)", $params);     
-    return $resultados;
-}
-function Delete(){
-    $requisicao = json_decode(file_get_contents('php://input'), true);
-    $params = [$requisicao['idProduto']];
-    $resultados = Query::Send('DELETE FROM Produtos WHERE idProduto = ?', $params);
-    return $resultados;
-}
-function Put(){
-    $requisicao = json_decode(file_get_contents('php://input'), true);
-    $params = [$requisicao['nome'], $requisicao['valorUnitario'], $requisicao['descricao'],$requisicao['linkImagem'], $requisicao['idProduto']];
-    $resultados = Query::Send('UPDATE Produtos SET nome = ?, valorUnitario = ?, descricao = ?, linkImagem = ? WHERE idProduto = ?', $params);
-    return $resultados;
-}
 
-#Switch case para executar o método correto
-switch($_SERVER['REQUEST_METHOD']){
-    case 'GET':
-        $resultados = Get();
-        break;
-    case 'POST':
-        $resultados = Post();
-        break;
-    case 'DELETE':
-        $resultados = Delete();
-        break;
-    case 'PUT':
-        $resultados = Put();
-        break;
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $resultados = Get();
+    echo Response::Enviar($resultados[0], $resultados[1]);
 }
-
-echo Response::Enviar(...$resultados);
+else{
+    echo Response::Enviar(405, "Método não suportado");
+}
 
 ?>

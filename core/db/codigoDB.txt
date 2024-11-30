@@ -10,11 +10,12 @@ create table usuarios (
 
 );
 create table cartoes (
-	idCartao	int	primary key auto_increment	,
-    numeroCC	varchar(19)	not null,
-    cvv			int	not null,
+	idCartao	int	primary key auto_increment,
+    numeroCC	varchar(255)	not null,
+    cvv			varchar(255)	not null,
     validade	varchar(5),
-	isActive	boolean,
+    final       varchar(4) not null,
+	isActive	boolean default False,
     idUsuario	int,
     foreign key (idUsuario) references usuarios(idUsuario)
 );
@@ -75,6 +76,17 @@ create table avaliacoes (
     foreign key (idUsuario) references usuarios(idUsuario),
     foreign key (idProduto) references produtos(idProduto)
 );
+create table cupons (
+    codigo  varchar(20) not null unique,
+    desconto int not null,
+    isActive boolean default True
+);
+create table pagamento (
+    numeroCC	varchar(19)	not null unique,
+    cvv			varchar(3)	not null,
+    validade	varchar(5),
+    limiteDisponivel decimal(10,2)
+);
 INSERT INTO CATEGORIAS (nome) VALUES
 ('processador'),
 ('placaMae'),
@@ -99,3 +111,11 @@ INSERT INTO produtos (nome, valorUnitario, quantidade, descricao, linkImagem, id
 ('Fonte 600W', 199.90, 8, 'Fonte de alimentação raivosa', 'https://a-static.mlcdn.com.br/800x560/fonte-evga-600w-80-plus-white-100-w1-0600-k/kabum/79112/1742ba21812454518e4194f43bf313c5.jpeg', 8),
 ('Gabinete Gamer', 299.90, 5, 'Gabinete com rgb', 'https://m.media-amazon.com/images/I/71Fm1iVNFoL._AC_UF1000,1000_QL80_.jpg', 9),
 ('Ventoinha RGB', 49.90, 50, 'Ventoinha que aumenta o desempenho', 'https://images8.kabum.com.br/produtos/fotos/108138/kit-com-3-cooler-fan-corsair-qlseries-rgb-120mm-co-9050098-ww_1575574269_g.jpg', 10);
+INSERT INTO CUPONS VALUES ("INCRIVEL", 100, default);
+INSERT INTO PAGAMENTO (numeroCC, cvv, validade, limiteDisponivel) VALUES ("5272-9318-5710-9207", "502", "11/25", 2400.00),
+("5424-6048-1612-9080", 749, "11/28", 0.00);
+INSERT INTO USUARIOS (usuario, email, senha) VALUES ('Bob', 'bob@bol.com', '123');
+INSERT INTO CARTOES (numeroCC, cvv, validade, final, isActive, idUsuario) VALUES ("5272-9318-5710-9207", "502", "11/25", "9207", True, 1),
+("5424-6048-1612-9080", 749, "11/28", "9080", False, 1);
+INSERT INTO ENDERECOS (nome, cep, rua, complemento, isActive, idUsuario) VALUES ('Casa', '18043-070', 'Rua Professor Mário Aurélio Dias', 'casa verde', True, 1),
+('Trabalho', '18074-029', 'Rua Paulino Verdelago', 'predio alto', False , 1);

@@ -15,7 +15,7 @@ if(!empty($requisicao)){ #Verifica se algum dado foi recebido
         if (is_array($resultados[1])){
             if (password_verify($requisicao['password'], $resultados[1][0]['senha'])){
 
-                echo Response::Enviar(200,["autenticado" => True, "linkPFP" => $resultados[1][0]['linkPFP']]);
+                echo Response::Enviar(200,["autenticado" => True, "linkPFP" => $resultados[1][0]['linkPFP'], "idUsuario" => $resultados[1][0]['idUsuario']]);
             }
             else{
                 echo Response::Enviar(401,"Credenciais inválidas");
@@ -23,7 +23,7 @@ if(!empty($requisicao)){ #Verifica se algum dado foi recebido
 
         }
         else{
-            echo Response::Enviar(...$resultados);
+            echo Response::Enviar(404,"Credenciais inválidas");
         }
         
 
