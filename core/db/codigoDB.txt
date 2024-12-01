@@ -11,8 +11,7 @@ create table usuarios (
 );
 create table cartoes (
 	idCartao	int	primary key auto_increment,
-    numeroCC	varchar(255)	not null,
-    cvv			varchar(255)	not null,
+    dadosCC	varchar(255)	not null,
     validade	varchar(5),
     final       varchar(4) not null,
 	isActive	boolean default False,
@@ -25,7 +24,7 @@ create table enderecos(
     cep			varchar(9) not null,
     rua         varchar(150),
     complemento 	varchar(30),
-    isActive	boolean,
+    isActive	boolean default False,
     idUsuario	int,
 	foreign key (idUsuario) references usuarios(idUsuario)
 );
@@ -114,10 +113,10 @@ INSERT INTO produtos (nome, valorUnitario, quantidade, descricao, linkImagem, id
 ('Windows 10 Pro', 149.90, 50, 'Windows potente e profissional', default, 11),
 ('Photoshop', 249.90, 50, 'Edita foto', default, 12);
 INSERT INTO CUPONS VALUES ("INCRIVEL", 100, default);
-INSERT INTO PAGAMENTO (numeroCC, cvv, validade, limiteDisponivel) VALUES ("5272-9318-5710-9207", "502", "11/25", 2400.00),
+INSERT INTO PAGAMENTO (numeroCC, cvv, validade, limiteDisponivel) VALUES ("5272-9318-5710-9207", "502", "11/25", 200400.00),
 ("5424-6048-1612-9080", 749, "11/28", 0.00);
 INSERT INTO USUARIOS (usuario, email, senha) VALUES ('Bob', 'bob@bol.com', '123');
-INSERT INTO CARTOES (numeroCC, cvv, validade, final, isActive, idUsuario) VALUES ("5272-9318-5710-9207", "502", "11/25", "9207", True, 1),
-("5424-6048-1612-9080", 749, "11/28", "9080", False, 1);
+INSERT INTO CARTOES (dadosCC, validade, final, isActive, idUsuario) VALUES ("5272-9318-5710-9207", "11/25", "9207", True, 1),
+("5424-6048-1612-9080", "11/28", "9080", False, 1);
 INSERT INTO ENDERECOS (nome, cep, rua, complemento, isActive, idUsuario) VALUES ('Casa', '18043-070', 'Rua Professor Mário Aurélio Dias', 'casa verde', True, 1),
 ('Trabalho', '18074-029', 'Rua Paulino Verdelago', 'predio alto', False , 1);
