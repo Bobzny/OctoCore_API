@@ -33,6 +33,16 @@ switch ($_SERVER['REQUEST_METHOD']){
     case 'DELETE':
         $resultados = Delete();
         break;
+    case 'GET':
+        $resultados = Get();
+        break;
 }
-echo Response::Enviar($resultados[0], $resultados[1]);
+if(isset($resultados)){
+
+    echo Response::Enviar($resultados[0], $resultados[1]);
+}
+else{
+    echo Response::Enviar(405, "Método não suportado");
+}
+
 ?>

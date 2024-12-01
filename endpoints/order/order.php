@@ -173,9 +173,6 @@ function Post(){
     $resultados = criarOrdem($infoPedido);
     return $resultados;
     
-
-    #$resultados = Query::Send("   INSERT INTO PEDIDOS (idUsuario, valorTotal, valorFinal, valorDesconto, valorFrete, metodoPagamento, enderecoEntrega, dateEHora) VALUES
-          #                      (?, ?, ?, ?, ?, ?, ?, ?)", $params);
 }
     
 
