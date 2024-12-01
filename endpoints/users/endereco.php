@@ -70,7 +70,11 @@ function Put(){
 }
 function Patch(){
     $requisicao = json_decode(file_get_contents('php://input'), true);
-    if (isset($requisicao['idEndereco'])){
+    if (isset($requisicao['idEndereco']) && isset($requisicao['idUsuario'])){
+        $desativar = Query::Send("UPDATE enderecos SET isActive = False WHERE idUsuario = ?", [$requisicao['idUsuario']]);
+        if($desativar[0] !== 200){
+            return [400, "Erro ao desativar outros endereços contate o suporte :)"];
+        }
         $params = [$requisicao['idEndereco']];
         $sql = "UPDATE enderecos SET isActive = True WHERE idEndereco = ?";
         $resultados = Query::Send($sql,$params);

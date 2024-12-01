@@ -72,7 +72,11 @@ function Delete(){  # Deletar cartão
 }
 function Patch(){
     $requisicao = json_decode(file_get_contents('php://input'), true);
-    if (isset($requisicao['IDCC'])){
+    if (isset($requisicao['IDCC']) && isset($requisicao['idUsuario'])){
+        $desativar = Query::Send("UPDATE cartoes SET isActive = False WHERE idUsuario = ?", [$requisicao['idUsuario']]);
+        if($desativar[0] !== 200){
+            return [400, "Erro ao desativar outros endereços contate o suporte :)"];
+        }
         $params = [$requisicao['IDCC']];
         $sql = "UPDATE cartoes SET isActive = True WHERE idCartao = ?";
         $resultados = Query::Send($sql,$params);
