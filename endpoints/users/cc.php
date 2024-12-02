@@ -88,7 +88,7 @@ function Patch(){
         }
     }
     else{
-        return [400, "ID do CC inválido"];
+        return [400, "ID do CC ou usuário inválido"];
     }
 }
 

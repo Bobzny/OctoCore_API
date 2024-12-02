@@ -75,6 +75,17 @@ create table avaliacoes (
     foreign key (idUsuario) references usuarios(idUsuario),
     foreign key (idProduto) references produtos(idProduto)
 );
+CREATE TABLE tickets (
+    idTicket INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuario INT NOT NULL,
+    idPedido INT NULL,
+    titulo VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    dataFechamento DATETIME NULL,
+    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
+    FOREIGN KEY (idPedido) REFERENCES pedidos(idPedido)
+);
 create table cupons (
     codigo  varchar(20) not null unique,
     desconto int not null,
