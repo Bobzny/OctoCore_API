@@ -113,6 +113,7 @@ function criarOrdem($infoPedido){
                     throw new Exception("Erro no pagamento: ".$pagamento[1]);
                 }
                 $estado = "Pagamento aprovado";
+                $metodoPagamento = $pagamento[2];
             }
             else{
                 throw new Exception("Método de pagamento inválido");
@@ -121,13 +122,17 @@ function criarOrdem($infoPedido){
         #Ajuste de estoque com os itens do pedido
         $ajuste = gerenciarEstoque($infoPedido['listaProdutos']); #Fazer alteração no estoque
         if ($ajuste[0] !== 200){
+            if ($idCC){
             $estorno = Payment::Estorno($dados); #Estorno do valor caso a compra não seja concluida
+            }
             throw new Exception("Erro: ".$ajuste[1]);
         }
         if (isset($infoPedido['cupom'])){
             $valorDesconto = valorDesconto($valorTotal[1], $infoPedido['cupom']);
             if ($valorDesconto[0] !== 200){
-                $estorno = Payment::Estorno($dados); #Estorno do valor caso a compra não seja concluida
+                if ($idCC){
+                    $estorno = Payment::Estorno($dados); #Estorno do valor caso a compra não seja concluida
+                    }
                 throw new Exception("Erro no cálculo de desconto".$valorTotal[1]);
             }
             
@@ -138,12 +143,14 @@ function criarOrdem($infoPedido){
 
         $valorFinal = $valorTotal[1] - $valorDesconto[1] + $infoPedido['valorFrete'];
 
-        $params = [$infoPedido['idUsuario'], $estado, $valorTotal[1], $valorFinal, $valorDesconto[1], $infoPedido['valorFrete'],$pagamento[2], $infoPedido['enderecoEntrega']];
+        $params = [$infoPedido['idUsuario'], $estado, $valorTotal[1], $valorFinal, $valorDesconto[1], $infoPedido['valorFrete'],$metodoPagamento, $infoPedido['enderecoEntrega']];
         $ordem = Query::Send("INSERT INTO PEDIDOS (idUsuario, estado, valorTotal, valorFinal, valorDesconto, valorFrete, metodoPagamento, enderecoEntrega, dataEHora) VALUES 
                                 (?, ?, ?, ?, ?, ?, ?,?, NOW())",$params);
 
         if ($ordem[0] !== 200){
-            $estorno = Payment::Estorno($dados); #Estorno do valor caso a compra não seja concluida
+            if ($idCC){
+                $estorno = Payment::Estorno($dados); #Estorno do valor caso a compra não seja concluida
+                }
             throw new Exception("Erro na criação da ordem".$ordem[1]);
         }
 
@@ -153,7 +160,9 @@ function criarOrdem($infoPedido){
             $conteudo = Query::Send("INSERT INTO CONTEUDO (idPedido, idProduto, quantidade, valorCompra) 
                                         VALUES (?, ?, ?, ?)", $params);
             if ($conteudo[0] !== 200){
-                $estorno = Payment::Estorno($dados); #Estorno do valor caso a compra não seja concluida
+                if ($idCC){
+                    $estorno = Payment::Estorno($dados); #Estorno do valor caso a compra não seja concluida
+                    }
                 throw new Exception("Erro no registro de conteúdo".$conteudo[1]);
             } 
         }
