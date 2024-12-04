@@ -48,7 +48,7 @@ function Post(){    #Adicionar um novo cartão
 function Get(){ # Buscar cartões de um usuário
     if (isset($_GET['user'])){
         $params = [$_GET['user']];
-        $resultados = Query::Send("SELECT idCartao, final FROM cartoes WHERE idUsuario = ?",$params);
+        $resultados = Query::Send("SELECT idCartao, final FROM cartoes WHERE idUsuario = ? ORDER BY isActive DESC",$params);
         return [$resultados[0], $resultados[1]];
 
     }

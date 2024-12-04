@@ -21,6 +21,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         echo Response::Enviar(400, "Requisição inválida");
     }
 }
+else if($_SERVER['REQUEST_METHOD'] === 'GET'){
+    $params = [$_GET['user']];
+    $resultados = Query::Send("SELECT * FROM tickets WHERE idUsuario = ? ",$params);
+    echo Response::Enviar($resultados[0], $resultados[1]);
+}
 else{
     echo Response::Enviar(405, "Método não suportado");
 }

@@ -24,7 +24,7 @@ function Post(){
 function Get(){
     if (isset($_GET['user'])){
         $params = [$_GET['user']];
-        $sql = "SELECT * FROM enderecos WHERE idUsuario = ?";
+        $sql = "SELECT * FROM enderecos WHERE idUsuario = ? ORDER BY isActive DESC";
         $resultados = Query::Send($sql, $params);
         return $resultados;
     }
