@@ -8,8 +8,7 @@ $sql = implode($codigo); #Junta todas as linhas em uma string
 
 $host = 'localhost';
 $user = 'root';
-$pw = '12345'; #Comente essa linha se o servidor não tiver senha como as máquinas da faculdade
-
+$pw = ''; #Comente essa linha se o servidor não tiver senha como as máquinas da faculdade
 
 $connection = new mysqli($host, $user, $pw);
 $resultado = $connection->multi_query($sql); #Só o query não funciona pra fazer todos esses comandos 💀
@@ -25,4 +24,4 @@ else{
 
 $connection->close();
 
-?>
+?>  
