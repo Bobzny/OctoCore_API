@@ -41,7 +41,7 @@ class Query{
     public static function Send($sql, $params = []){
 
         $statement = self::$conn->prepare($sql);
-        if($statement === false){               #Tratamente de erros na preparação
+        if($statement === false){               #Tratamento de erros na preparação
             return[400,"Erro ao preparar o statement:".self::$conn->error]; 
         }
         $tiposStr = '' ;  #Loop para montar a string que vai ser passada como parâmetro na hora do bind
