@@ -37,7 +37,7 @@ function resetDB($conn){
     createDB($conn);
 }
 
-
+//Essas opções podem ser passadas em uma requisição também para gerenciar
 switch ($_GET['option']){
     case 'create':
         createDB($connection);
