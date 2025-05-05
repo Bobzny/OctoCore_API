@@ -1,9 +1,9 @@
 <?php
 
 
-
+//Retorna json dos dados
 class Response{
-    public static function Enviar($status, $data = null){
+    public static function json($status, $data = null){
        
         #Resposta para preflight
         if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
