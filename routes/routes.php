@@ -18,7 +18,7 @@ class Routes{
     public static function getRoute($method, $params){
         $caminho = $params[0] . '/' .$params[1];
         $rota = $rotas[$method][$caminho];
-        return $rota
+        return $rota;
     }
 }
 

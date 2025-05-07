@@ -21,7 +21,6 @@ echo Response::json(200, $params);
 require_once __DIR__.'/routes/routes.php';
 $rota = Routes::getRoute($_SERVER['REQUEST_METHOD'], $params);
 
-$resposta = 
 //require_once __DIR__.'/controllers/'.$params[1].'/'.$params[2].'.php';
 //$teste = call_user_func(['AuthController', 'Post'], $requisicao);
 //echo Response::json(200, $teste);
