@@ -1,23 +1,23 @@
 <?php
-require_once __DIR__ ."/query.php";
+require_once __DIR__ ."/../models/query.php";
 
 
-#Simulação de pagamento
-#Uma das implementações futuras é uma integração com uma API de pagamento
+#Simulação de pagamento usando uma tabela separada no banco de dados
+#Uma das implementações futuras é uma integração com uma API de pagamento real
 
 class Payment {
 
 
     public static function Decrypt($dadosCC){
 
-        #Um dia vão estar no env 🤡
+        #Chave temporária para simulação de pagamento
         $cipher = "AES-128-CTR";
-        $chavinho = "BOBZITO";
+        $chave = "TEMP_KEY";
 
         # Descriptografando dados recebidos
         $dadosCC = base64_decode($dadosCC);
         list($encriptado, $iv) = explode("::", $dadosCC); # Divide a string e bota as duas partes nas variáveis de list
-        $decriptado = openssl_decrypt($encriptado, $cipher, $chavinho, 0, $iv);
+        $decriptado = openssl_decrypt($encriptado, $cipher, $chave, 0, $iv);
         list($cc, $cvv) = explode("::", $decriptado);
     
         return [$cc, $cvv];
@@ -81,7 +81,7 @@ class Payment {
         
     }
     
-    public static function Estorno($dados){
+    public static function Estorno($dados){ //Retorna o saldo para a conta caso a transação do pedido falhe
         try{
 
             
