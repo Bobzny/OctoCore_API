@@ -1,7 +1,7 @@
 <?php
 //Arquivo central para roteamento, sanitizando todas as requisições que entram no servidor antes de realizar qualquer ação e seguindo o modelo mvc
 $requisicao = json_decode(file_get_contents('php://input'), true);
-require_once __DIR__.'/helpers/response.php';
+require_once __DIR__.'/helpers/autoload.php';
 //Encerrar o código caso nao seja um GET e não tenha requisição
 if(empty($requisicao) && $_SERVER['REQUEST_METHOD'] != 'GET'){
     echo Response::json(400, "Sem corpo na requisição :C");
@@ -10,11 +10,10 @@ if(empty($requisicao) && $_SERVER['REQUEST_METHOD'] != 'GET'){
 
 
 
-$url = $_SERVER['REQUEST_URI'];
+$uri = $_SERVER['REQUEST_URI'];
 //echo $url;
-$params = explode('/',trim($url, '/'));
-//print_r(explode('/',$url));
-//print_r(explode('/',trim($url, '/')));
+$params = explode('/',trim($uri, '/'));
+
 
 require_once __DIR__.'/helpers/response.php';
 echo Response::json(200, $params);

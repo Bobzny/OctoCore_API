@@ -2,9 +2,6 @@
 
 require_once __DIR__ ."/conexao.php";
 
-
-
-
 class Query{
 
     public static $conn;                        #Atributo estático pra ficar na desgraça do escopo aqui
