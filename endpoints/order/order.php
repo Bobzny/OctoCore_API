@@ -212,6 +212,6 @@ switch($_SERVER['REQUEST_METHOD']){
         $resultados = Post();
         break;
     }
-echo Response::Enviar($resultados[0], $resultados[1]);
+echo Response::json($resultados[0], $resultados[1]);
 
 ?>
