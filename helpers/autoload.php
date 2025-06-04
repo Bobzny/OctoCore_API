@@ -2,7 +2,11 @@
 spl_autoload_register(function ($class) {
     $paths = [
         __DIR__ . '/',              
-        __DIR__ . '/../controllers/',
+        __DIR__ . '/../controllers/user/',
+        __DIR__ . '/../helpers/',
+        __DIR__ . '/../controllers/produtos/',
+        __DIR__ . '/../controllers/cupons/',
+        __DIR__ . '/../controllers/order/',
         __DIR__ . '/../models/',
     ];
 
@@ -14,3 +18,6 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+
+
+?>

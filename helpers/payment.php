@@ -1,18 +1,22 @@
 <?php
-require_once __DIR__ ."/../models/query.php";
-
-
 #Simulação de pagamento usando uma tabela separada no banco de dados
 #Uma das implementações futuras é uma integração com uma API de pagamento real
 
 class Payment {
+    private static function getChave() {
+        require_once __DIR__ . '/../config/config.php';
+        if (defined('CHAVE_CC')) {
+            return CHAVE_CC;
+        } else {
+            throw new Exception('CHAVE_CC não definida no config.php');
+        }
+    }
 
-
-    public static function Decrypt($dadosCC){
+    private static function Decrypt($dadosCC){
 
         #Chave temporária para simulação de pagamento
         $cipher = "AES-128-CTR";
-        $chave = "TEMP_KEY";
+        $chave = self::getChave();
 
         # Descriptografando dados recebidos
         $dadosCC = base64_decode($dadosCC);

@@ -11,8 +11,9 @@ class AuthController{
                 
             if (is_array($resultados[1])){
                 if (password_verify($requisicao['password'], $resultados[1][0]['senha'])){
-                    $data = [    "autenticado" => True, "linkPFP" => $resultados[1][0]['linkPFP'],
-                                    "idUsuario" => $resultados[1][0]['idUsuario'], "usuario" => $resultados[1][0]['usuario'],
+                    $data = [       "token" => Jwt::Gerar($resultados[1][0]['idUsuario']),
+                                    "linkPFP" => $resultados[1][0]['linkPFP'],
+                                    "usuario" => $resultados[1][0]['usuario'],
                                     "email" => $resultados[1][0]['email']
                             ];
                         return[200,$data];

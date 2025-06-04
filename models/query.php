@@ -2,6 +2,9 @@
 
 require_once __DIR__ ."/conexao.php";
 
+//Garantir que será lançada uma exceção em erros de execução
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 class Query{
 
     public static $conn;                        #Atributo estático pra ficar na desgraça do escopo aqui
@@ -59,12 +62,19 @@ class Query{
             }
             $statement->bind_param($tiposStr, ...$params); #O ... pega os itens dentro do array e passa individualmente como parâmetros, muito mágico :)
         };
-        
-        $execucao = $statement->execute();
 
-        if($execucao === false){
-            return[400,"Erro na execução do statement: ". self::$conn->error];
+        #Try para garantir que a aplicação não quebre quando for lançada uma exceção a partir da execução, que pode ocorrer dependendo da configuração do mysqli
+        try{
+            $execucao = $statement->execute();
         }
+        catch (mysqli_sql_exception $e){
+            #Verifica se foi um erro de entrada duplicada
+            if ($e->getCode() === 1062){
+                return[400, "Entrada duplicada"];
+            }
+            return[400,"Erro na execução do statement: ". $e];
+        }
+        
 
         if (preg_match('/^INSERT/i', $sql)) { # Verifica se a query inicia com INSERT e busca o id que foi adicionado
             $idInserido = self::$conn->insert_id;
