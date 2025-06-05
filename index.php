@@ -1,9 +1,10 @@
 <?php
 //Arquivo central para roteamento, sanitizando todas as requisições que entram no servidor antes de realizar qualquer ação e seguindo o modelo mvc
-$requisicao = json_decode(file_get_contents('php://input'), true);
+//Tratamento da requisição para caso não seja um json
+$requisicao = json_decode(file_get_contents('php://input'), true) ?? [];
 require_once __DIR__.'/helpers/autoload.php';
 //Encerrar o código caso nao seja um GET e não tenha requisição
-if(empty($requisicao) && $_SERVER['REQUEST_METHOD'] != 'GET'){
+if(empty($requisicao) && empty($_FILES) && $_SERVER['REQUEST_METHOD'] != 'GET'){
     echo Response::json(400, "Sem corpo na requisição :C");
     die;
 }

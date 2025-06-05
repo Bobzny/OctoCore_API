@@ -20,15 +20,16 @@ class Routes{
                         'user/endereco' => ['EnderecoController', 'Cadastrar', true],
                         'order' => ['OrderController', 'CriarOrdem', true],
                         'user/ticket' => ['TicketController', 'CriarTicket', true],
-                        'user/recovery' => ['RecoveryController', 'Recuperar', false]
+                        'user/recovery' => ['RecoveryController', 'Recuperar', false],
+                        'user/picture' => ['PictureController', 'AlterarImagemPerfil', true]
                     ],
         "PUT" => [
                         'user/endereco' => ['EnderecoController', 'Editar', true]
         ],
         "PATCH" => [
                         'user/cc' => ['CCController', 'Alterar', true],
-                        'user/endereco' => ['EnderecoController', 'Alterar', true],
-                        'user/picture' => ['PictureController', 'AlterarImagemPerfil', true]
+                        'user/endereco' => ['EnderecoController', 'Alterar', true]
+                        
         ],
         "DELETE" => [
                         'user/cc' => ['CCController', 'Delete', true],
