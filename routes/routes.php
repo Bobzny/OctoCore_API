@@ -4,23 +4,6 @@
 class Routes{
 
     public static $rotas = [
-<<<<<<< HEAD
-
-        "GET" => [],
-        "POST" =>   [   'users/auth' => ['AuthController','Auth'],
-                        'users/signup' => ['SignupController', 'Signup']
-                    ],
-        "PUT" => [],
-        "PATCH" => [],
-        "DELETE" => []
-        
-                ];
-
-    public static function getRoute($method, $params){
-        $caminho = $params[0] . '/' .$params[1];
-        $rota = self :: $rotas[$method][$caminho] ?? null; // deixei o array de caminhos estaticos e coloquei o self para referencia o array de si mesmo sem precisar instaciar.
-        return $rota;
-=======
         //O primeiro elemento do array é o nome do controller, o segundo é o nome da função que será chamada
         //O terceiro elemento indica se a rota requer autenticação
         "GET" => [  'produtos' => ['ProdutosController', 'Buscar', false],
@@ -61,7 +44,6 @@ class Routes{
         else{
             return false;
         }
->>>>>>> 2.0
     }
 }
 
