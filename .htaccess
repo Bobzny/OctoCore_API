@@ -1,8 +1,8 @@
 <IfModule mod_headers.c>
     # Configurado com o ip do frontend
-    Header set Access-Control-Allow-Origin "http://localhost:3000"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, DELETE, PUT, PATCH"
-    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    Header always set Access-Control-Allow-Origin http://localhost:3000
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS, DELETE, PUT, PATCH"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
 </IfModule>
 
 RewriteEngine On
