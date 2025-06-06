@@ -234,6 +234,7 @@ INSERT INTO produtos (nome, valorUnitario, quantidade, descricao, linkImagem, id
 
 
 INSERT INTO CUPONS VALUES ("INCRIVEL", 100, default);
+INSERT INTO CUPONS VALUES ("LEGAL", 20, default);
 INSERT INTO PAGAMENTO (numeroCC, cvv, validade, limiteDisponivel) VALUES ("5272-9318-5710-9207", "502", "11/25", 200400.00),
 ("5424-6048-1612-9080", 749, "11/28", 0.00);
 INSERT INTO USUARIOS (usuario, email, senha) VALUES ('Bob', 'bob@bol.com', '123');

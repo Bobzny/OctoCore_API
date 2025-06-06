@@ -6,7 +6,7 @@ class AuthController{
     
         if (isset($requisicao['email']) && isset($requisicao['password'])){ #verifica se o JSON possui os campos necessários
                 
-            $baseUrl = 'https://localhost/OctoCore_API/img/users/';
+            $baseUrl = 'http://localhost/OctoCore_API/img/users/';
             $params = [$requisicao['email']];  
             $resultados = Query::Send("SELECT * FROM USUARIOS WHERE EMAIL = ?",$params); 
                 
