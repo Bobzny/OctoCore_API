@@ -51,7 +51,6 @@ class PictureController{
     public static function AlterarImagemPerfil($requisicao){
         # Alterar imagem de perfil
         if (isset($requisicao['idUsuario']) && isset($_FILES['imagem'])){
-            print_r($_FILES['imagem']);
             //Verificar se o arquivo é uma imagem
             if (explode('/',$_FILES['imagem']['type'])[0] !== 'image'){
                 return [400, "Arquivo enviado deve ser uma imagem"];
@@ -79,7 +78,10 @@ class PictureController{
 
             $resultados = Query::Send($sql, $params);
             if($resultados[0] === 200){
-                return [$resultados[0], "Imagem de perfil alterada com sucesso"];
+                return [$resultados[0], [
+                    "message" => "Imagem de perfil alterada com sucesso",
+                    "linkPFP" => 'http://localhost/OctoCore_API/img/users/' . $salvar[1]
+                ]];
             }
             else{
                 return [$resultados[0], "Erro na alteração da imagem"];
