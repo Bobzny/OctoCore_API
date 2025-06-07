@@ -41,7 +41,7 @@ class SignupController{
 
 
             
-            $resultados = Query::Send("INSERT INTO usuarios (usuario, email, senha) VALUES (?, ?, ?)", $params);
+            $resultados = Query::Send("INSERT INTO usuarios (usuario, email, senha, linkPFP) VALUES (?, ?, ?, DEFAULT)", $params);
             if($resultados[0] == 200){
                 return[200, "Cadastro realizado com sucesso"];
             }
