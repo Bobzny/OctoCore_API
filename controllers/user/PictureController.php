@@ -17,6 +17,7 @@ class PictureController{
         foreach ($extensoes as $ext) {
             $arquivo = $pasta . 'profile_' . $idUsuario . '.' . $ext;
             if (file_exists($arquivo)) {
+                print_r($arquivo);
                 if(unlink($arquivo)){
                     return [200, "Imagem $arquivo excluída com sucesso"];
                 }
@@ -63,7 +64,7 @@ class PictureController{
 
             //Apaga a imagem anterior, se existir
             $excluirAnterior = self::ApagarImagemAnterior($requisicao['idUsuario']);
-            if($excluirAnterior[0] !== 200){
+            if($excluirAnterior[0] !== 200 && $excluirAnterior[0] !== 404){
                 return [500, "Erro ao excluir imagem anterior"];
             }
             //Executa função auxiliar para salvar a imagem
